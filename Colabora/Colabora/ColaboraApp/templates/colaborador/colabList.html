@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<table class="table table-striped ">
+    <thead class="thead-dark">
+      <tr>
+          <th scope="col">#</th>
+          <th scope="col">Nome</th>
+          <th scope="col">Telefone</th>
+          <th scope="col">Sexo</th>
+          <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for colab in object_list %}
+      <tr>
+           <td>{{forloop.counter}}</td>
+           <td>{{colab.nome}}  {{colab.sobrenome}}</td>
+           <td>{{colab.telefone}}</td>
+           <td>{{colab.sexo_choices}}</td>
+           <td>
+               <a href="{% url 'colabDetail/' colab.pk %}"> <button type="button" class="btn btn-dark" data-toggle="tooltip" data-placement="top" title="Detalhes"><i class="material-icons">description</i></button></a>
+               <button type="button" class="btn btn-info"><i class="material-icons" data-toggle="tooltip" data-placement="top" title="Editar">border_color</i> </button>
+               <a href="{% url 'colabDelete/' colab.pk %}"><button type="button" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Deletar"><i class="material-icons">delete_forever</i></button></a>
+           </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block body %}
+<div class="card">
+    <div class="card-body">
+        <form method="post">
+            {% csrf_token %}
+            <div class="row">
+                <div class="form-group col">
+                    <select class="form-control" name="colaborador">
+                        <option value="">Colaborador</option>
+                        {% for cola in object %}
+                        <option value="{{cola}}">{{cola}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group col">
+                    <select class="form-control" name="tipo_formacao">
+                        <option value="">Tipo Formação</option>
+                        {% for colab in object2 %}
+                        <option value="{{colab}}">{{colab}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group col">
+                    <input type="text" class="form-control" name="nome_curso" placeholder="Nome do Curso">
+                </div>
+            </div>
+            <div class="row">
+                 <div class="form-group col">
+                    <input type="text" class="form-control" name="instituicao" placeholder="Instituição">
+                </div>
+                 <div class="form-group col">
+                    <input type="date" class="form-control" name="dt_inicio" placeholder="Data Início">
+                </div>
+                 <div class="form-group col">
+                    <input type="date" class="form-control" name="dt_termino" placeholder="Data Termino">
+                </div>
+            </div>
+            <div class="card-footer">
+                <button type="submit" class="btn btn-success">Enviar</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

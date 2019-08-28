@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div class="card">
+    <div class="card-body">
+        <form method="post">
+            {% csrf_token %}
+            <p>Você está certo em deletar a função: {{object}} ?</p>
+        <input type="submit" value="Confirmar" class="btn btn-danger">
+        </form>
+    </div>
+</div>
+{% endblock %}
