@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% block title_content%} Departamentos {% endblock %}
+{% block content %}
+<div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <div class="card-tools">
+                    <button type="submit" class="btn btn-light text-light card-title" data-toggle="modal" data-target="#registerNewdepartmentModal" style="background-color:#20c6b6; font-weight:bold">Novo Departamento <i class="fas fa-plus"></i></button>
+                    <div class="input-group input-group-sm" style="width: 150px;">
+                    <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+                    <div class="input-group-append">
+                      <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body table-responsive p-0" style="height: 300px;">
+                <table class="table table-head-fixed">
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>Departamento</th>
+                      <th>Ações</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                     {% for depart in object_list %}
+                       <tr>
+                         <td>{{forloop.counter}}</td>
+                         <td>{{depart.nomeDepartamento}}</td>
+                         <td>
+                            <a href="#"> <button type="button" class="btn bg-gradient-secondary" data-toggle="tooltip" data-placement="top" title="Detalhes"><i class="fas fa-file"></i></button></a>
+                            <a href="{% url 'departamentoDelete' pk=depart.id %}"> <button type="button" class="btn bg-gradient-danger" data-toggle="tooltip" data-placement="top" title="Deletar"><i class="fas fa-trash"></i></button></a>
+                         </td>
+                       </tr>
+                     {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+            <!-- Modal -->
+<div class="modal fade" id="registerNewdepartmentModal" tabindex="-1" role="dialog" aria-labelledby="registerNewdepartmentModal" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Novo Departamento</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form method="post">
+          {% csrf_token %}
+      <div class="modal-body">
+          <div class="form-group">
+            <label for="departamento">Departamento</label>
+            <input type="text" class="form-control" placeholder="Departamento" required id="departamento" name="nomeDepartamento">
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar <i class="fas fa-times"></i></button>
+        <button type="submit" class="btn btn-light text-light" style="background-color:#20c6b6; font-weight:bold">Salvar <i class="far fa-save"></i> </button>
+      </div>
+      </form>
+    </div>
+    </div>
+  </div>
+</div>
+          </div>
+        </div>
+
+{% endblock %}
